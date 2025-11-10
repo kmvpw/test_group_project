@@ -1,3 +1,6 @@
 # Added users func
-pass
-pass
+class Master():
+  pass
+
+class Engineer():
+  pass
