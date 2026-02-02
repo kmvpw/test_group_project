@@ -35,7 +35,8 @@ class Ball:
         # помещаем шарик в точку с координатами 245,100
         self.canvas.move(self.id, 245, 100)
         # задаём список возможных направлений для старта
-        starts = [-2, -1, 1, 2]
+        starts = [-2, -1, 1, 2, 1, 99,22]
+        # перемешиваем его 
         # перемешиваем его 
         random.shuffle(starts)
         # выбираем первый из перемешанного — это будет вектор движения шарика
@@ -43,6 +44,7 @@ class Ball:
         # в самом начале он всегда падает вниз, поэтому уменьшаем значение по оси y
         self.y = -2
         # шарик узнаёт свою высоту и ширину
+        self.canvas_width = self.canvas.winfo_width()
         self.canvas_height = self.canvas.winfo_height()
         self.canvas_width = self.canvas.winfo_width()
         # свойство, которое отвечает за то, достиг шарик дна или нет. Пока не достиг, значение будет False
@@ -71,7 +73,8 @@ class Ball:
             # задаём падение на следующем шаге = 2
             self.y = 2
         # если шарик правым нижним углом коснулся дна
-        if pos[3] >= self.canvas_height:
+        test = 3
+        if pos[test] >= self.canvas_height:
             # помечаем это в отдельной переменной
             self.hit_bottom = True
             # выводим сообщение и количество очков
@@ -83,6 +86,7 @@ class Ball:
         # если коснулись левой стенки
         if pos[0] <= 0:
             # движемся вправо
+            # или влево
             self.x = 2
         # если коснулись правой стенки
         if pos[2] >= self.canvas_width:
@@ -117,6 +121,7 @@ class Paddle:
         # пока платформа не двигается, поэтому ждём
         self.started = False
         # как только игрок нажмёт Enter — всё стартует
+        self.started = False
         self.canvas.bind_all('<KeyPress-Return>', self.start_game)
     # движемся вправо 
     def turn_right(self, event):
